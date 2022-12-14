@@ -227,64 +227,6 @@ class _DashboardPageState extends State<DashboardPage> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Text(
-                        "Buah Populer",
-                        style: TextStyle(
-                            fontSize: 24, fontWeight: FontWeight.bold),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 10.0,
-                  ),
-                  Container(
-                    child: SizedBox(
-                      height: 160.0,
-                      child: ListView.builder(
-                        itemCount: 4,
-                        scrollDirection: Axis.horizontal,
-                        itemBuilder: (context, index) {
-                          return Container(
-                            width: 120.0,
-                            padding: const EdgeInsets.all(10.0),
-                            margin: const EdgeInsets.only(right: 10.0),
-                            decoration: BoxDecoration(
-                              image: const DecorationImage(
-                                image: NetworkImage(
-                                  "https://i.ibb.co/S32HNjD/no-image.jpg",
-                                ),
-                                fit: BoxFit.cover,
-                              ),
-                              borderRadius: const BorderRadius.all(
-                                Radius.circular(16.0),
-                              ),
-                              color: Colors.blue[400],
-                            ),
-                          );
-                        },
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 10.0,
-                  ),
-                ],
-              ),
-            ),
-            Divider(
-              thickness: 3,
-            ),
-            const SizedBox(
-              height: 10.0,
-            ),
-            Container(
-              padding: EdgeInsets.only(left: 20, right: 20),
-              child: Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Text(
                         "Semua Buah",
                         style: TextStyle(
                             fontSize: 24, fontWeight: FontWeight.bold),

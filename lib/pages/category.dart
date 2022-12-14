@@ -46,7 +46,7 @@ class _CategoryPageState extends State<CategoryPage> {
                 constraints: BoxConstraints.expand(),
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.white,
+                    primary: Colors.white,
                   ),
                   onPressed: () {
                     Navigator.push(
