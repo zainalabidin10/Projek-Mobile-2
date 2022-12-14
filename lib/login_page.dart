@@ -19,17 +19,14 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController userNameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
-  bool visible = false;
   bool isPasswordVisible = false;
 
   List result = [];
 
-  final String sUrl = '';
-
   @override
   Future<void> _login() async {
     Uri url = Uri.parse(
-        "http://192.168.1.22/api/login.php?username=${userNameController.text.toString()}&password=${passwordController.text.toString()}");
+        "http://192.168.1.26/api/login.php?username=${userNameController.text.toString()}&password=${passwordController.text.toString()}");
     var response = await http.get(url);
     var data = jsonDecode(response.body);
 
@@ -98,132 +95,137 @@ class _LoginPageState extends State<LoginPage> {
               ),
             ),
             Padding(padding: EdgeInsets.only(top: 20)),
-            Container(
-              margin: EdgeInsets.all(20),
-              padding: EdgeInsets.all(20),
-              child: Column(
-                children: <Widget>[
-                  Container(
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        color: Colors.grey[200]),
-                    padding: const EdgeInsets.all(12),
-                    margin: const EdgeInsets.only(),
-                    child: TextFormField(
-                      controller: userNameController,
-                      cursorColor: Color(0xffF5591F),
-                      decoration: const InputDecoration(
-                        labelText: 'Nama Pengguna',
-                        labelStyle: TextStyle(
-                          color: Colors.blueGrey,
-                        ),
-                        suffixIcon: Icon(
-                          Icons.person,
-                          color: Color(0xffF5591F),
-                        ),
-                        border: OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(20))),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 20.0,
-                  ),
-                  Container(
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        color: Colors.grey[200]),
-                    padding: const EdgeInsets.all(12),
-                    margin: const EdgeInsets.only(),
-                    child: TextFormField(
-                      controller: passwordController,
-                      obscureText: true,
-                      decoration: const InputDecoration(
-                        labelText: 'Kata Sandi',
-                        labelStyle: TextStyle(
-                          color: Colors.blueGrey,
-                        ),
-                        suffixIcon: Icon(
-                          Icons.lock,
-                          color: Color(0xffF5591F),
-                        ),
-                        border: OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(20))),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 30.0,
-                  ),
-                  Container(
-                    child: ElevatedButton(
-                      child: Padding(
-                        padding: EdgeInsets.fromLTRB(40, 10, 40, 10),
-                        child: Text(
-                          'login'.toUpperCase(),
-                          style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white),
-                        ),
-                      ),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) {
-                              return Navbar();
-                            },
+            Form(
+              autovalidateMode: AutovalidateMode.onUserInteraction,
+              key: _formKey,
+              child: Container(
+                margin: EdgeInsets.all(20),
+                padding: EdgeInsets.all(20),
+                child: Column(
+                  children: <Widget>[
+                    Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: Colors.grey[200]),
+                      padding: const EdgeInsets.all(12),
+                      margin: const EdgeInsets.only(),
+                      child: TextFormField(
+                        controller: userNameController,
+                        cursorColor: Color(0xffF5591F),
+                        decoration: const InputDecoration(
+                          labelText: 'Nama Pengguna',
+                          labelStyle: TextStyle(
+                            color: Colors.blueGrey,
                           ),
-                        );
-                      },
-                      // onPressed: () async {
-                      //   final isValidForm = _formKey.currentState!.validate();
-                      //   if (isValidForm) {
-                      //     var sharedPref =
-                      //         await SharedPreferences.getInstance();
-                      //     sharedPref.setBool(SplashScreenState.KEYLOGIN, true);
-                      //     _login();
-                      //   } else {
-                      //     return null;
-                      //   }
-                      // },
-                    ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.only(top: 10),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Text(
-                          "Belum punya akun? ",
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: Colors.grey,
+                          suffixIcon: Icon(
+                            Icons.person,
+                            color: Color(0xffF5591F),
                           ),
+                          border: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(20))),
                         ),
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) {
-                                  return RegisterPage();
-                                },
-                              ),
-                            );
-                          },
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 20.0,
+                    ),
+                    Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: Colors.grey[200]),
+                      padding: const EdgeInsets.all(12),
+                      margin: const EdgeInsets.only(),
+                      child: TextFormField(
+                        controller: passwordController,
+                        obscureText: true,
+                        decoration: const InputDecoration(
+                          labelText: 'Kata Sandi',
+                          labelStyle: TextStyle(
+                            color: Colors.blueGrey,
+                          ),
+                          suffixIcon: Icon(
+                            Icons.lock,
+                            color: Color(0xffF5591F),
+                          ),
+                          border: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(20))),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 30.0,
+                    ),
+                    Container(
+                      child: ElevatedButton(
+                        child: Padding(
+                          padding: EdgeInsets.fromLTRB(40, 10, 40, 10),
                           child: Text(
-                            "Daftar Sekarang",
-                            style: TextStyle(color: Color(0xffF5591F)),
+                            'login'.toUpperCase(),
+                            style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white),
                           ),
                         ),
-                      ],
+                        // onPressed: () {
+                        //   Navigator.push(
+                        //     context,
+                        //     MaterialPageRoute(
+                        //       builder: (context) {
+                        //         return Navbar();
+                        //       },
+                        //     ),
+                        //   );
+                        // },
+                        onPressed: () async {
+                          final isValidForm = _formKey.currentState!.validate();
+                          if (isValidForm) {
+                            var sharedPref =
+                                await SharedPreferences.getInstance();
+                            sharedPref.setBool(
+                                SplashScreenState.KEYLOGIN, true);
+                            _login();
+                          } else {
+                            return null;
+                          }
+                        },
+                      ),
                     ),
-                  )
-                ],
+                    Container(
+                      margin: EdgeInsets.only(top: 10),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Text(
+                            "Belum punya akun? ",
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: Colors.grey,
+                            ),
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) {
+                                    return RegisterPage();
+                                  },
+                                ),
+                              );
+                            },
+                            child: Text(
+                              "Daftar Sekarang",
+                              style: TextStyle(color: Color(0xffF5591F)),
+                            ),
+                          ),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
               ),
             ),
           ],
